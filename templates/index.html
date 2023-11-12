@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Record System</title>
+    <script>
+        function confirmDelete(employeeId) {
+            if (confirm("Are you sure you want to delete this employee?")) {
+                window.location.href = '/delete/' + employeeId;
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Employee Record System</h1>
+    <form action="/add" method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required>
+        <label for="gender">Gender:</label>
+        <input type="text" id="gender" name="gender" required>
+        <label for="position">Position:</label>
+        <input type="text" id="position" name="position" required>
+        <label for="employeeid">Employee ID:</label>
+        <input type="number" id="employeeid" name="employeeid" required>
+        
+        <button type="submit">Add employee</button>
+    </form>
+    <h2>Employees</h2>
+    <ul>
+        {% for employee in employees %}
+            <li>{{ employee[1] }} - Age: {{ employee[2] }} - Gender: {{ employee[3] }} - Position: {{ employee[4] }} - Employee ID: {{ employee[5]}}
+                <a href="#" onclick="confirmDelete( {{employee[0]}})">Delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
